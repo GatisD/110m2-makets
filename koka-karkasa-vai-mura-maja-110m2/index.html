@@ -725,6 +725,7 @@ html:has(dialog[open]){overflow:hidden}
 .dlg{overscroll-behavior:contain}
 
 
+
 /* ================= Zināšanu bāze + raksts (build-blog.py, 2026-09-27) ================= */
 .crumbs ol{display:flex;align-items:center;gap:0 10px;min-width:0;margin:0;padding:0;list-style:none;font:400 14px/1.4 var(--font);color:var(--muted)}
 .crumbs li{display:flex;align-items:center;gap:10px;min-width:0;white-space:nowrap}
@@ -851,6 +852,26 @@ html:has(dialog[open]){overflow:hidden}
   .tbl td + td{margin-top:10px}
   .tbl td:first-child{font-size:17px}
   .tbl td[data-label]::before{content:attr(data-label);display:block;margin-bottom:2px;font:500 13px/1.4 var(--font);color:var(--muted)}
+}
+
+/* ui-ux-pro P2 [4]-[6], iestrādāts 2026-09-27 */
+@media (max-width: 899px){
+  /* [4] Fokuss neslēpjas zem mobilās joslas (WCAG 2.4.11) */
+  html{scroll-padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+
+  /* [5] Skaitļu tabulas mobilajā: nosaukums pa kreisi, vērtība pa labi vienā rindā.
+     Tikai tabulām ar klasi .is-compact (build-blog.py: visas šūnas <= 24 zīmes) */
+  .tbl.is-compact td[data-label]{display:flex;justify-content:space-between;align-items:baseline;gap:16px;text-align:right;line-height:1.4}
+  .tbl.is-compact td[data-label]::before{margin-bottom:0;font-size:14px;line-height:1.4;text-align:left}
+  .tbl.is-compact td + td{margin-top:4px}
+
+  /* [6] "Citi raksti" mobilajā: kompakts saraksts (sīktēls + virsraksts), bez ievada */
+  .more .bcards{gap:24px}
+  .more .bc{display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;align-items:start}
+  .more .bc-ph{aspect-ratio:1 / 1}
+  .more .bc-tx{padding-top:0}
+  .more .bc h3{font:600 17px/1.4 var(--font)}
+  .more .bc-ex{display:none}
 }
 </style>
 </head>

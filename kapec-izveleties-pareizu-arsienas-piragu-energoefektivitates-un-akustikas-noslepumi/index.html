@@ -723,6 +723,7 @@ html:has(dialog[open]){overflow:hidden}
 .dlg{overscroll-behavior:contain}
 
 
+
 /* ================= Zināšanu bāze + raksts (build-blog.py, 2026-09-27) ================= */
 .crumbs ol{display:flex;align-items:center;gap:0 10px;min-width:0;margin:0;padding:0;list-style:none;font:400 14px/1.4 var(--font);color:var(--muted)}
 .crumbs li{display:flex;align-items:center;gap:10px;min-width:0;white-space:nowrap}
@@ -850,6 +851,26 @@ html:has(dialog[open]){overflow:hidden}
   .tbl td:first-child{font-size:17px}
   .tbl td[data-label]::before{content:attr(data-label);display:block;margin-bottom:2px;font:500 13px/1.4 var(--font);color:var(--muted)}
 }
+
+/* ui-ux-pro P2 [4]-[6], iestrādāts 2026-09-27 */
+@media (max-width: 899px){
+  /* [4] Fokuss neslēpjas zem mobilās joslas (WCAG 2.4.11) */
+  html{scroll-padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+
+  /* [5] Skaitļu tabulas mobilajā: nosaukums pa kreisi, vērtība pa labi vienā rindā.
+     Tikai tabulām ar klasi .is-compact (build-blog.py: visas šūnas <= 24 zīmes) */
+  .tbl.is-compact td[data-label]{display:flex;justify-content:space-between;align-items:baseline;gap:16px;text-align:right;line-height:1.4}
+  .tbl.is-compact td[data-label]::before{margin-bottom:0;font-size:14px;line-height:1.4;text-align:left}
+  .tbl.is-compact td + td{margin-top:4px}
+
+  /* [6] "Citi raksti" mobilajā: kompakts saraksts (sīktēls + virsraksts), bez ievada */
+  .more .bcards{gap:24px}
+  .more .bc{display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;align-items:start}
+  .more .bc-ph{aspect-ratio:1 / 1}
+  .more .bc-tx{padding-top:0}
+  .more .bc h3{font:600 17px/1.4 var(--font)}
+  .more .bc-ex{display:none}
+}
 </style>
 </head>
 <body>
@@ -913,7 +934,7 @@ html:has(dialog[open]){overflow:hidden}
 </ol>
 <div class="cfg-note"><p>Konfiguratorā var izvēlēties tehnoloģiju, komplektāciju un plānojumu - cena redzama uzreiz.</p><a class="link" href="../#izmaksas">Salikt savu māju</a></div><h2>Mūsu ārsienu tehniskie rādītāji</h2>
 <p>Pateicoties daudzslāņu pīrāgam (ģipškartons + OSB + vate + kokšķiedra), šīs sienas uzrāda izcilus rādītājus:</p>
-<figure class="tbl"><table role="table"><thead role="rowgroup"><tr role="row"><th role="columnheader">Parametri</th><th role="columnheader">AS 195G (Optimāls)</th><th role="columnheader">AS 245G (Premium)</th></tr></thead><tbody role="rowgroup"><tr role="row"><td role="rowheader"><strong>Karkasa statņi</strong></td><td data-label="AS 195G (Optimāls)" role="cell">45×195 mm (C24)</td><td data-label="AS 245G (Premium)" role="cell">45×245 mm (C24)</td></tr><tr role="row"><td role="rowheader"><strong>Kopējais siltinājums</strong></td><td data-label="AS 195G (Optimāls)" role="cell">245 mm (195+50)</td><td data-label="AS 245G (Premium)" role="cell">295 mm (245+50)</td></tr><tr role="row"><td role="rowheader"><strong>U vērtība (siltums)</strong></td><td data-label="AS 195G (Optimāls)" role="cell">~0,15 W/m²K</td><td data-label="AS 245G (Premium)" role="cell">~0,12 W/m²K</td></tr><tr role="row"><td role="rowheader"><strong>Skaņas izolācija</strong></td><td data-label="AS 195G (Optimāls)" role="cell">~52-54 dB</td><td data-label="AS 245G (Premium)" role="cell">~55-57 dB</td></tr></tbody></table></figure>
+<figure class="tbl is-compact"><table role="table"><thead role="rowgroup"><tr role="row"><th role="columnheader">Parametri</th><th role="columnheader">AS 195G (Optimāls)</th><th role="columnheader">AS 245G (Premium)</th></tr></thead><tbody role="rowgroup"><tr role="row"><td role="rowheader"><strong>Karkasa statņi</strong></td><td data-label="AS 195G (Optimāls)" role="cell">45×195 mm (C24)</td><td data-label="AS 245G (Premium)" role="cell">45×245 mm (C24)</td></tr><tr role="row"><td role="rowheader"><strong>Kopējais siltinājums</strong></td><td data-label="AS 195G (Optimāls)" role="cell">245 mm (195+50)</td><td data-label="AS 245G (Premium)" role="cell">295 mm (245+50)</td></tr><tr role="row"><td role="rowheader"><strong>U vērtība (siltums)</strong></td><td data-label="AS 195G (Optimāls)" role="cell">~0,15 W/m²K</td><td data-label="AS 245G (Premium)" role="cell">~0,12 W/m²K</td></tr><tr role="row"><td role="rowheader"><strong>Skaņas izolācija</strong></td><td data-label="AS 195G (Optimāls)" role="cell">~52-54 dB</td><td data-label="AS 245G (Premium)" role="cell">~55-57 dB</td></tr></tbody></table></figure>
 <p><strong>Kāpēc tik laba skaņas izolācija?</strong> Mēs rēķinām skaņas slāpēšanu, ņemot vērā visu slāņu mijiedarbību. Iekšējais <strong>12 mm OSB</strong> un <strong>12,5 mm ģipškartons</strong> kopā ar ārējo <strong>25 mm kokšķiedras plāksni</strong> un masīvo akmens vates pildījumu rada efektu, kas slāpē gan gaisa, gan trieciena trokšņus. Augstu hermētiskumu apstiprina arī <a class="nw" href="../kapec-koka-karkasa-maja-blivuma-tests-nav-ekstra-bet-gan-kvalitates-apliecinajums/">gaisa blīvuma tests</a>.</p>
 <h2>Detalizēts slāņu izvietojums (no iekšpuses uz āru)</h2>
 <ol>

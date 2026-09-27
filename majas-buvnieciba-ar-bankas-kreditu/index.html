@@ -725,6 +725,7 @@ html:has(dialog[open]){overflow:hidden}
 .dlg{overscroll-behavior:contain}
 
 
+
 /* ================= Zināšanu bāze + raksts (build-blog.py, 2026-09-27) ================= */
 .crumbs ol{display:flex;align-items:center;gap:0 10px;min-width:0;margin:0;padding:0;list-style:none;font:400 14px/1.4 var(--font);color:var(--muted)}
 .crumbs li{display:flex;align-items:center;gap:10px;min-width:0;white-space:nowrap}
@@ -852,6 +853,26 @@ html:has(dialog[open]){overflow:hidden}
   .tbl td:first-child{font-size:17px}
   .tbl td[data-label]::before{content:attr(data-label);display:block;margin-bottom:2px;font:500 13px/1.4 var(--font);color:var(--muted)}
 }
+
+/* ui-ux-pro P2 [4]-[6], iestrādāts 2026-09-27 */
+@media (max-width: 899px){
+  /* [4] Fokuss neslēpjas zem mobilās joslas (WCAG 2.4.11) */
+  html{scroll-padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+
+  /* [5] Skaitļu tabulas mobilajā: nosaukums pa kreisi, vērtība pa labi vienā rindā.
+     Tikai tabulām ar klasi .is-compact (build-blog.py: visas šūnas <= 24 zīmes) */
+  .tbl.is-compact td[data-label]{display:flex;justify-content:space-between;align-items:baseline;gap:16px;text-align:right;line-height:1.4}
+  .tbl.is-compact td[data-label]::before{margin-bottom:0;font-size:14px;line-height:1.4;text-align:left}
+  .tbl.is-compact td + td{margin-top:4px}
+
+  /* [6] "Citi raksti" mobilajā: kompakts saraksts (sīktēls + virsraksts), bez ievada */
+  .more .bcards{gap:24px}
+  .more .bc{display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;align-items:start}
+  .more .bc-ph{aspect-ratio:1 / 1}
+  .more .bc-tx{padding-top:0}
+  .more .bc h3{font:600 17px/1.4 var(--font)}
+  .more .bc-ex{display:none}
+}
 </style>
 </head>
 <body>
@@ -904,7 +925,7 @@ html:has(dialog[open]){overflow:hidden}
 
 <h2>Cik liela pirmā iemaksa nepieciešama mājas būvniecībai?</h2>
 <p>Mājas būvniecībai bankas parasti finansē līdz 80-85% no darījuma summas, tātad klienta līdzdalība ir 15-20%. 110m2.lv mājām tas praksē nozīmē:</p>
-<figure class="tbl"><table role="table"><thead role="rowgroup"><tr role="row"><th role="columnheader">Māja</th><th role="columnheader">Cena</th><th role="columnheader">Iemaksa 20%</th><th role="columnheader">Ar ALTUM 5%</th></tr></thead><tbody role="rowgroup"><tr role="row"><td role="rowheader">Karkasa, bāzes</td><td data-label="Cena" role="cell">123 900 EUR</td><td data-label="Iemaksa 20%" role="cell">24 780 EUR</td><td data-label="Ar ALTUM 5%" role="cell">6 195 EUR</td></tr><tr role="row"><td role="rowheader">Karkasa, pilnā</td><td data-label="Cena" role="cell">193 595 EUR</td><td data-label="Iemaksa 20%" role="cell">38 719 EUR</td><td data-label="Ar ALTUM 5%" role="cell">9 680 EUR</td></tr><tr role="row"><td role="rowheader">Mūra, bāzes</td><td data-label="Cena" role="cell">137 201 EUR</td><td data-label="Iemaksa 20%" role="cell">27 440 EUR</td><td data-label="Ar ALTUM 5%" role="cell">6 860 EUR</td></tr><tr role="row"><td role="rowheader">Mūra, pilnā</td><td data-label="Cena" role="cell">208 595 EUR</td><td data-label="Iemaksa 20%" role="cell">41 719 EUR</td><td data-label="Ar ALTUM 5%" role="cell">10 430 EUR</td></tr></tbody></table><figcaption class="cap">Visas cenas ar PVN 21%. Aprēķinā ņemta vērā tikai mājas cena. Precīzu darījuma summu un līdzdalību nosaka banka, ņemot vērā arī zemes gabala vērtību.</figcaption></figure>
+<figure class="tbl is-compact"><table role="table"><thead role="rowgroup"><tr role="row"><th role="columnheader">Māja</th><th role="columnheader">Cena</th><th role="columnheader">Iemaksa 20%</th><th role="columnheader">Ar ALTUM 5%</th></tr></thead><tbody role="rowgroup"><tr role="row"><td role="rowheader">Karkasa, bāzes</td><td data-label="Cena" role="cell">123 900 EUR</td><td data-label="Iemaksa 20%" role="cell">24 780 EUR</td><td data-label="Ar ALTUM 5%" role="cell">6 195 EUR</td></tr><tr role="row"><td role="rowheader">Karkasa, pilnā</td><td data-label="Cena" role="cell">193 595 EUR</td><td data-label="Iemaksa 20%" role="cell">38 719 EUR</td><td data-label="Ar ALTUM 5%" role="cell">9 680 EUR</td></tr><tr role="row"><td role="rowheader">Mūra, bāzes</td><td data-label="Cena" role="cell">137 201 EUR</td><td data-label="Iemaksa 20%" role="cell">27 440 EUR</td><td data-label="Ar ALTUM 5%" role="cell">6 860 EUR</td></tr><tr role="row"><td role="rowheader">Mūra, pilnā</td><td data-label="Cena" role="cell">208 595 EUR</td><td data-label="Iemaksa 20%" role="cell">41 719 EUR</td><td data-label="Ar ALTUM 5%" role="cell">10 430 EUR</td></tr></tbody></table><figcaption class="cap">Visas cenas ar PVN 21%. Aprēķinā ņemta vērā tikai mājas cena. Precīzu darījuma summu un līdzdalību nosaka banka, ņemot vērā arī zemes gabala vērtību.</figcaption></figure>
 <p>Ja zemes gabals jau pieder jums, tas bieži tiek ieskaitīts kā daļa no nodrošinājuma, un nepieciešamais naudas ieguldījums samazinās.</p>
 <h2>ALTUM garantija: kā pirmo iemaksu samazināt līdz 5%</h2>
 <p>ALTUM mājokļu garantija ģimenēm ar bērniem ir valsts atbalsts, kas ļauj bankai piešķirt aizdevumu ar mazāku pirmo iemaksu. Garantija attiecas gan uz mājokļa iegādi, gan uz būvniecību.</p>
@@ -916,7 +937,7 @@ html:has(dialog[open]){overflow:hidden}
 <li>Garantijas termiņš ir līdz 10 gadiem.</li>
 </ul>
 <p>Garantijas apmērs ir atkarīgs no bērnu skaita un no tā, kur atrodas īpašums:</p>
-<figure class="tbl"><table role="table"><thead role="rowgroup"><tr role="row"><th role="columnheader">Bērnu skaits</th><th role="columnheader">Rīgā, Pierīgā, Jūrmalā</th><th role="columnheader">Pārējā Latvijā</th></tr></thead><tbody role="rowgroup"><tr role="row"><td role="rowheader">1 bērns</td><td data-label="Rīgā, Pierīgā, Jūrmalā" role="cell">5-10%, līdz 10 000 EUR</td><td data-label="Pārējā Latvijā" role="cell">5-30%, līdz 30 000 EUR</td></tr><tr role="row"><td role="rowheader">2 bērni</td><td data-label="Rīgā, Pierīgā, Jūrmalā" role="cell">5-15%, līdz 15 000 EUR</td><td data-label="Pārējā Latvijā" role="cell">5-40%, līdz 40 000 EUR</td></tr><tr role="row"><td role="rowheader">3 bērni</td><td data-label="Rīgā, Pierīgā, Jūrmalā" role="cell">5-20%, līdz 20 000 EUR</td><td data-label="Pārējā Latvijā" role="cell">5-50%, līdz 50 000 EUR</td></tr><tr role="row"><td role="rowheader">4 bērni</td><td data-label="Rīgā, Pierīgā, Jūrmalā" role="cell">5-30%, līdz 30 000 EUR</td><td data-label="Pārējā Latvijā" role="cell">5-50%, līdz 50 000 EUR</td></tr></tbody></table><figcaption class="cap">Pierīga šajā programmā ir Mārupes, Olaines, Ķekavas, Salaspils, Ropažu un Ādažu novadi. Dati: altum.lv, 2026. gada augusts.</figcaption></figure>
+<figure class="tbl is-compact"><table role="table"><thead role="rowgroup"><tr role="row"><th role="columnheader">Bērnu skaits</th><th role="columnheader">Rīgā, Pierīgā, Jūrmalā</th><th role="columnheader">Pārējā Latvijā</th></tr></thead><tbody role="rowgroup"><tr role="row"><td role="rowheader">1 bērns</td><td data-label="Rīgā, Pierīgā, Jūrmalā" role="cell">5-10%, līdz 10 000 EUR</td><td data-label="Pārējā Latvijā" role="cell">5-30%, līdz 30 000 EUR</td></tr><tr role="row"><td role="rowheader">2 bērni</td><td data-label="Rīgā, Pierīgā, Jūrmalā" role="cell">5-15%, līdz 15 000 EUR</td><td data-label="Pārējā Latvijā" role="cell">5-40%, līdz 40 000 EUR</td></tr><tr role="row"><td role="rowheader">3 bērni</td><td data-label="Rīgā, Pierīgā, Jūrmalā" role="cell">5-20%, līdz 20 000 EUR</td><td data-label="Pārējā Latvijā" role="cell">5-50%, līdz 50 000 EUR</td></tr><tr role="row"><td role="rowheader">4 bērni</td><td data-label="Rīgā, Pierīgā, Jūrmalā" role="cell">5-30%, līdz 30 000 EUR</td><td data-label="Pārējā Latvijā" role="cell">5-50%, līdz 50 000 EUR</td></tr></tbody></table><figcaption class="cap">Pierīga šajā programmā ir Mārupes, Olaines, Ķekavas, Salaspils, Ropažu un Ādažu novadi. Dati: altum.lv, 2026. gada augusts.</figcaption></figure>
 <p>Divi papildinājumi, kas attiecas uz jaunbūvi:</p>
 <ul>
 <li><strong>A klases māja.</strong> Ja būvējat A klases vai gandrīz nulles enerģijas mājokli, garantija palielinās par 5%, bet ne vairāk kā 5 000 EUR.</li>

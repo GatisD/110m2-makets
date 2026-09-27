@@ -723,6 +723,7 @@ html:has(dialog[open]){overflow:hidden}
 .dlg{overscroll-behavior:contain}
 
 
+
 /* ================= Zināšanu bāze + raksts (build-blog.py, 2026-09-27) ================= */
 .crumbs ol{display:flex;align-items:center;gap:0 10px;min-width:0;margin:0;padding:0;list-style:none;font:400 14px/1.4 var(--font);color:var(--muted)}
 .crumbs li{display:flex;align-items:center;gap:10px;min-width:0;white-space:nowrap}
@@ -850,6 +851,26 @@ html:has(dialog[open]){overflow:hidden}
   .tbl td:first-child{font-size:17px}
   .tbl td[data-label]::before{content:attr(data-label);display:block;margin-bottom:2px;font:500 13px/1.4 var(--font);color:var(--muted)}
 }
+
+/* ui-ux-pro P2 [4]-[6], iestrādāts 2026-09-27 */
+@media (max-width: 899px){
+  /* [4] Fokuss neslēpjas zem mobilās joslas (WCAG 2.4.11) */
+  html{scroll-padding-bottom:calc(88px + env(safe-area-inset-bottom))}
+
+  /* [5] Skaitļu tabulas mobilajā: nosaukums pa kreisi, vērtība pa labi vienā rindā.
+     Tikai tabulām ar klasi .is-compact (build-blog.py: visas šūnas <= 24 zīmes) */
+  .tbl.is-compact td[data-label]{display:flex;justify-content:space-between;align-items:baseline;gap:16px;text-align:right;line-height:1.4}
+  .tbl.is-compact td[data-label]::before{margin-bottom:0;font-size:14px;line-height:1.4;text-align:left}
+  .tbl.is-compact td + td{margin-top:4px}
+
+  /* [6] "Citi raksti" mobilajā: kompakts saraksts (sīktēls + virsraksts), bez ievada */
+  .more .bcards{gap:24px}
+  .more .bc{display:grid;grid-template-columns:104px minmax(0,1fr);gap:16px;align-items:start}
+  .more .bc-ph{aspect-ratio:1 / 1}
+  .more .bc-tx{padding-top:0}
+  .more .bc h3{font:600 17px/1.4 var(--font)}
+  .more .bc-ex{display:none}
+}
 </style>
 </head>
 <body>
@@ -941,7 +962,7 @@ html:has(dialog[open]){overflow:hidden}
 </ul>
 <p>Detalizēta informācija par <a href="../#izmaksas">komplektācijām un aktuālajām cenām</a> pieejama 110m2.lv mājaslapā.</p>
 <h2>Salīdzinājums: individuāls projekts pret tipveida māju</h2>
-<figure class="tbl"><table role="table"><thead role="rowgroup"><tr role="row"><th role="columnheader">Parametrs</th><th role="columnheader">Individuāls projekts</th><th role="columnheader">110m2.lv tipveida māja</th></tr></thead><tbody role="rowgroup"><tr role="row"><td role="rowheader">Cena pirms būvniecības</td><td data-label="Individuāls projekts" role="cell">Aptuvens aprēķins</td><td data-label="110m2.lv tipveida māja" role="cell">Fiksēta tāme</td></tr><tr role="row"><td role="rowheader">Cena pēc būvniecības</td><td data-label="Individuāls projekts" role="cell">Bieži +20-30%</td><td data-label="110m2.lv tipveida māja" role="cell">Fiksēta tāme</td></tr><tr role="row"><td role="rowheader">Būvatļaujas process</td><td data-label="Individuāls projekts" role="cell">3-9 mēneši</td><td data-label="110m2.lv tipveida māja" role="cell">4-8 nedēļas</td></tr><tr role="row"><td role="rowheader">Finansiālais risks</td><td data-label="Individuāls projekts" role="cell">Augsts</td><td data-label="110m2.lv tipveida māja" role="cell">Zems</td></tr><tr role="row"><td role="rowheader">Pielāgojamība</td><td data-label="Individuāls projekts" role="cell">Pilna brīvība</td><td data-label="110m2.lv tipveida māja" role="cell">Pārbaudīts plānojums</td></tr></tbody></table></figure>
+<figure class="tbl is-compact"><table role="table"><thead role="rowgroup"><tr role="row"><th role="columnheader">Parametrs</th><th role="columnheader">Individuāls projekts</th><th role="columnheader">110m2.lv tipveida māja</th></tr></thead><tbody role="rowgroup"><tr role="row"><td role="rowheader">Cena pirms būvniecības</td><td data-label="Individuāls projekts" role="cell">Aptuvens aprēķins</td><td data-label="110m2.lv tipveida māja" role="cell">Fiksēta tāme</td></tr><tr role="row"><td role="rowheader">Cena pēc būvniecības</td><td data-label="Individuāls projekts" role="cell">Bieži +20-30%</td><td data-label="110m2.lv tipveida māja" role="cell">Fiksēta tāme</td></tr><tr role="row"><td role="rowheader">Būvatļaujas process</td><td data-label="Individuāls projekts" role="cell">3-9 mēneši</td><td data-label="110m2.lv tipveida māja" role="cell">4-8 nedēļas</td></tr><tr role="row"><td role="rowheader">Finansiālais risks</td><td data-label="Individuāls projekts" role="cell">Augsts</td><td data-label="110m2.lv tipveida māja" role="cell">Zems</td></tr><tr role="row"><td role="rowheader">Pielāgojamība</td><td data-label="Individuāls projekts" role="cell">Pilna brīvība</td><td data-label="110m2.lv tipveida māja" role="cell">Pārbaudīts plānojums</td></tr></tbody></table></figure>
 <h2>Biežākie jautājumi</h2><div class="faq"><details open=""><summary>Cik maksā koka karkasa mājas būvniecība Latvijā?<svg aria-hidden="true" viewbox="0 0 24 24"><use href="#plus"></use></svg></summary><div class="a"><p>Koka karkasa mājas cena 110m2.lv projektā ir no 1 126 līdz 1 760 EUR/m² ar PVN, atkarībā no komplektācijas. Bāzes komplektācija maksā 123 900 EUR, pilnībā pabeigta māja 193 595 EUR. <a class="nw" href="../#izmaksas">110m2.lv mājaslapā</a> pieejamas aktuālās cenas ar detalizētu komplektāciju aprakstu.</p></div></details><details><summary>Kāda ir atšķirība starp koka karkasa māju un mūra māju?<svg aria-hidden="true" viewbox="0 0 24 24"><use href="#plus"></use></svg></summary><div class="a"><p>110m2.lv piedāvā abas tehnoloģijas ar fiksētu tāmi. Mūra māja ir tradicionāls risinājums ar masīvu konstrukciju un labāku skaņas izolāciju starp telpām. Koka karkasa māju uzbūvē ātrāk, un tā maksā mazāk: bāzes komplektācijā starpība ir 13 301 EUR. Energoefektivitāte abām ir identiska, jo pamati, jumta siltinājums, siltumsūknis un ventilācija ir vienādi. Detalizēts salīdzinājums pieejams rakstā <a class="nw" href="../koka-karkasa-vai-mura-maja-110m2/">koka karkasa vai mūra māja</a>.</p></div></details><details><summary>Vai tipveida mājas projektu var pielāgot savām vajadzībām?<svg aria-hidden="true" viewbox="0 0 24 24"><use href="#plus"></use></svg></summary><div class="a"><p>Tipveida māju projekti piedāvā pielāgošanas iespējas noteiktās robežās, kas nemaina projekta pamatkonstrukciju un nerada papildu saskaņošanas izmaksas. Sīkāku informāciju var uzzināt <a class="nw" href="#konsultacija">bezmaksas konsultācijā</a>.</p></div></details><details><summary>Kā saņemt mājas būvniecības kredītu tipveida projektam?<svg aria-hidden="true" viewbox="0 0 24 24"><use href="#plus"></use></svg></summary><div class="a"><p>Mājas būvniecība ar bankas kredītu tipveida projektam ir vieglāk saskaņojama, jo fiksēta tāme dod bankai precīzu priekšstatu par projekta kopējām izmaksām jau no pirmās dienas. 110m2.lv speciālisti var sniegt atbalstu arī šajā procesā.</p></div></details><details><summary>Kur Latvijā 110m2.lv būvē mājas?<svg aria-hidden="true" viewbox="0 0 24 24"><use href="#plus"></use></svg></summary><div class="a"><p>110m2.lv mājas tiek celtas visā Latvijā: Rīgā, Pierīgā, kā arī reģionos. Mājas cena sākas no 1 126 EUR/m² ar PVN, atkarībā no tehnoloģijas un komplektācijas. Bezmaksas konsultācijā var precizēt celtniecības iespējas konkrētajā vietā.</p></div></details></div>
 
 <hr/>
